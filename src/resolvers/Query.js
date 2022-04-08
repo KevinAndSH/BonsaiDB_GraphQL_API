@@ -6,7 +6,7 @@ const QueryResolvers = {
     return AuthorModel.findById(args.id)
   },
 
-  authors: async (_, _, context) => {
+  authors: async (_, args, context) => {
     context.getUserDataFromReq()
     return AuthorModel.find()
   },

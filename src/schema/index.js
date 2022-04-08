@@ -12,5 +12,4 @@ fs.readdirSync(__dirname)
     schemaString += content
   })
 
-
 module.exports = schemaString
