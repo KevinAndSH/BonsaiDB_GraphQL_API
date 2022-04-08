@@ -1,0 +1,15 @@
+"Information about an author"
+type Author {
+  "Unique identifier in the database"
+  id: ID!
+  "Author's first name"
+  firstName: String!
+  "Author's last name"
+  lastName: String
+  "Author's full name"
+  fullName: String!
+  "author's country"
+  country: String
+  "Books written by this author in our database"
+  books: [Book!]!
+}

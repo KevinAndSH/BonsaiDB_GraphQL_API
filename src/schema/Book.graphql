@@ -1,0 +1,19 @@
+"All the information about a book"
+type Book {
+  "Unique identifier in the database"
+  id: ID!
+  "Name of the book"
+  title: String!
+  "International Standard Book Number"
+  isbn: String!
+  "Brief summary of the major points of the book"
+  synopsis: String
+  "A list of genres for this book"
+  genres: [String!]!
+  "Year this book was published at"
+  publicationYear: Int
+  "Author(s) of this book" 
+  authors: [Author!]!
+  "Publisher information"
+  publisher: Publisher!
+}

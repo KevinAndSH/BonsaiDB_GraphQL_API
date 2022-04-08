@@ -1,0 +1,11 @@
+"All the information about a publisher"
+type Publisher {
+  "Unique identifier in the database"
+  id: ID!
+  "Name of the publisher"
+  name: String!
+  "Year the publisher was founded"
+  foundationYear: Int
+  "Books published"
+  books: [Book!]!
+}

@@ -1,0 +1,37 @@
+type Mutation {
+  login(
+    username: String!
+    password: String!
+  ): AuthPayload!
+
+  signup(
+    username: String!
+    password: String!
+    passwordConfirm: String!
+  ): AuthPayload!
+
+  registerBook(
+    title: String!
+    isbn: String!
+    synopsis: String
+    genres: [String!]!
+    publicationYear: Int
+    authorIDs: [ID!]!
+    publisherID: ID!
+  ): Book!
+
+  updateBook(
+    id: ID!
+    title: String
+    isbn: String
+    synopsis: String
+    genres: [String]
+    publicationYear: Int
+    authorIDs: [ID]
+    publisherID: ID
+  ): Book!
+}
+
+type AuthPayload {
+  token: String!
+}

@@ -1,0 +1,47 @@
+"Root query"
+type Query {
+  "Get data for a book with the specified ID"
+  book(id: ID!): Book
+  "Get data for all the books"
+  books(
+    "For pagination purposes (default is 1)"
+    page: Int,
+    "Amount of entries to get (default is 10)"
+    amount: Int,
+    "Publication year"
+    year: Int,
+    "Title or fragment of the title to search by"
+    title: String,
+    "ID of the author to search by"
+    authorID: ID,
+    "ID of the publisher to search by"
+    publisherID: ID,
+    "Order by either title or publication year"
+    orderBy: SortCriteria,
+    "Ascendent or descendent"
+    orderType: OrderType
+  ): [Book]
+  "Get data for an author with the specified ID"
+  author(id: ID!): Author
+  "Get data for all the authors"
+  authors: [Author]
+  "Get data for a publisher with the specified ID"
+  publisher(id: ID!): Publisher
+  "Get data for all the publishers"
+  publishers: [Publisher]
+}
+
+"Ascendent or descendent ordering"
+enum OrderType {
+  "Ascendent"
+  ASC
+  "Descendent"
+  DESC
+}
+
+enum SortCriteria {
+  "Alphabetically order by title"
+  TITLE
+  "Order by publication year"
+  YEAR
+}
