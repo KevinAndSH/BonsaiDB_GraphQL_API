@@ -8,11 +8,30 @@ const QueryResolvers = {
 
   authors: async (_, args, { getUserDataFromReq }) => {
     getUserDataFromReq()
-    return AuthorModel.find()
+
+    const { page, amount } = args
+
+    const entriesToShow = amount ?? 10
+    const entriesToSkip = entriesToShow * (page - 1)
+
+    return AuthorModel
+      .find()
+      .limit(entriesToShow)
+      .skip(entriesToSkip)
   },
 
   publisher: async (_, args) => PublisherModel.findById(args.id),
-  publishers: async () => PublisherModel.find(),
+  publishers: async (_, args, { getUserDataFromReq }) => {
+    const { page, amount } = args
+
+    const entriesToShow = amount ?? 10
+    const entriesToSkip = entriesToShow * (page - 1)
+
+    return PublisherModel
+      .find()
+      .limit(entriesToShow)
+      .skip(entriesToSkip)
+  },
 
   book: async (_, args) => BookModel.findById(args.id),
   books: async (_, args) => {

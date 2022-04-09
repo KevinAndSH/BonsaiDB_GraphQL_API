@@ -2,6 +2,7 @@
 type Query {
   "Get data for a book with the specified ID"
   book(id: ID!): Book
+
   "Get data for all the books"
   books(
     "For pagination purposes (default is 1)"
@@ -21,14 +22,28 @@ type Query {
     "Ascendent or descendent"
     orderType: OrderType
   ): [Book]
+
   "Get data for an author with the specified ID"
   author(id: ID!): Author
+
   "Get data for all the authors"
-  authors: [Author]
+  authors(
+    "For pagination purposes (default is 1)"
+    page: Int,
+    "Amount of entries to get (default is 10)"
+    amount: Int,
+  ): [Author]
+
   "Get data for a publisher with the specified ID"
   publisher(id: ID!): Publisher
+  
   "Get data for all the publishers"
-  publishers: [Publisher]
+  publishers(
+    "For pagination purposes (default is 1)"
+    page: Int,
+    "Amount of entries to get (default is 10)"
+    amount: Int,
+  ): [Publisher]
 }
 
 "Ascendent or descendent ordering"
