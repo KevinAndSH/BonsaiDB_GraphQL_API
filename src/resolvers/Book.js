@@ -1,9 +1,10 @@
-const { AuthorModel, PublisherModel } = require("../model")
-
 const BookResolvers = {
   id: book => book._id,
-  publisher: async book => PublisherModel.findById(book.publisherID),
-  authors: async book => AuthorModel.where("_id").in([...book.authorIDs]),
+  publisher: async (book, _, { loaders }) => loaders.publisherLoader.load(book.publisherID),
+  authors: async (book, _, { loaders, getUserDataFromReq }) => {
+    getUserDataFromReq()
+    return loaders.authorLoader.loadMany([...book.authorIDs])
+  },
 }
 
 module.exports = BookResolvers

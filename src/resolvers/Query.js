@@ -1,13 +1,13 @@
 const { AuthorModel, BookModel, PublisherModel } = require("../model")
 
 const QueryResolvers = {
-  author: async (_, args, context) => {
-    context.getUserDataFromReq()
+  author: async (_, args, { getUserDataFromReq }) => {
+    getUserDataFromReq()
     return AuthorModel.findById(args.id)
   },
 
-  authors: async (_, args, context) => {
-    context.getUserDataFromReq()
+  authors: async (_, args, { getUserDataFromReq }) => {
+    getUserDataFromReq()
     return AuthorModel.find()
   },
 
@@ -23,7 +23,7 @@ const QueryResolvers = {
 
     const filter = {}
     if (year) filter.publicationYear = year
-    if (title) filter.title = new RegExp(`.?${title}.?`, "i")
+    if (title) filter.title = new RegExp(title, "i")
     if (authorID) filter.authorIDs = { $in: [authorID] }
     if (publisherID) filter.publisherID = publisherID
 
