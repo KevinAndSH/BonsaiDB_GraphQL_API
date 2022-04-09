@@ -1,5 +1,6 @@
 const { gql } = require("apollo-server")
 const jwt = require("jsonwebtoken")
+const isISBN = require("is-isbn")
 
 const schema = require("./schema")
 const typeDefs = gql(schema)
@@ -15,7 +16,9 @@ const context = ({ req }) => {
 
   const createToken = userData => jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET)
 
-  return { createToken, getUserDataFromReq }
+  const validateISBN = isbn => isISBN.validate(isbn.replace("-", ""))
+
+  return { createToken, getUserDataFromReq, validateISBN }
 }
 
 module.exports = { typeDefs, resolvers, context }

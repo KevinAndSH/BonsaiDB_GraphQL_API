@@ -1,5 +1,4 @@
 const bcrypt = require("bcryptjs")
-const isISBN = require("is-isbn")
 const { UserModel, BookModel } = require("../model")
 
 const MutationResolvers = {
@@ -33,7 +32,7 @@ const MutationResolvers = {
   registerBook: async (_, args, context) => {
     context.getUserDataFromReq()
 
-    if (!isISBN.validate(args.isbn.replace("-", ""))) throw new Error("Invalid ISBN")
+    if (!context.validateISBN(args.isbn)) throw new Error("Invalid ISBN")
 
     const newBook = new BookModel(args)
     return newBook.save().catch(console.error)
@@ -42,7 +41,7 @@ const MutationResolvers = {
   updateBook: async (_, args, context) => {
     context.getUserDataFromReq()
 
-    if (args.isbn && !isISBN.validate(args.isbn.replace("-", ""))) throw new Error("Invalid ISBN")
+    if (args.isbn && !context.validateISBN(args.isbn)) throw new Error("Invalid ISBN")
 
     const bookToEdit = await BookModel.findById(args.id)
     

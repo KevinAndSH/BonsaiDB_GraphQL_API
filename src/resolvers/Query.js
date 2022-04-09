@@ -29,6 +29,7 @@ const QueryResolvers = {
 
     return BookModel
       .find(filter)
+      .sort([[orderBy, orderType]])
       .limit(entriesToShow)
       .skip(entriesToSkip)
   }

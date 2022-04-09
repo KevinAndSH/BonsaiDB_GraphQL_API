@@ -9,5 +9,3 @@ GraphQL schemas were made using the Schema Definition Language (SDL), and joined
 Queries to the database are managed with [Mongoose](https://mongoosejs.com).
 
 Files in `src/resolvers/` and `src/model/` are automatically imported to their respective `index.js` files, and their respective `module.exports` are saved in an object where the keys are the names of the files (removing the `.js` part, that is). This is especially important to keep in mind for `src/resolvers/`, where files have to be named exactly like the types defined in the GraphQL schema, otherwise they won't work.
-
-
