@@ -12,7 +12,7 @@ const resolvers = require("./resolvers")
 const context = async ({ req }) => {
   const getUserDataFromReq = () => {
     const authHeader = req.headers?.authorization
-    const token = authHeader && authHeader.split(" ")[1]
+    const token = authHeader && authHeader.replace("Bearer ", "")
     if (!token) throw new Error("Login required")
     const userData = jwt.verify(token, ACCESS_TOKEN_SECRET)
     return userData
