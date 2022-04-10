@@ -1,4 +1,3 @@
-"Root query"
 type Query {
   "Get data for a book with the specified ID"
   book(id: ID!): Book
@@ -7,7 +6,7 @@ type Query {
   books(
     "For pagination purposes (default is 1)"
     page: Int,
-    "Amount of entries to get (default is 10)"
+    "Amount of entries per page to get (default is 10)"
     amount: Int,
     "Publication year"
     year: Int,
@@ -30,7 +29,7 @@ type Query {
   authors(
     "For pagination purposes (default is 1)"
     page: Int,
-    "Amount of entries to get (default is 10)"
+    "Amount of entries per page to get (default is 10)"
     amount: Int,
   ): [Author]
 
@@ -41,7 +40,7 @@ type Query {
   publishers(
     "For pagination purposes (default is 1)"
     page: Int,
-    "Amount of entries to get (default is 10)"
+    "Amount of entries per page to get (default is 10)"
     amount: Int,
   ): [Publisher]
 }

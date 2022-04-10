@@ -9,7 +9,7 @@ const MutationResolvers = {
 
     const newUser = new UserModel({
       username,
-      encryptedPassword: bcrypt.hashSync(password, 10)
+      hashedPassword: bcrypt.hashSync(password, 10)
     })
     
     newUser.save().catch(console.error)
@@ -23,7 +23,7 @@ const MutationResolvers = {
 
     const userData = await UserModel.findOne({ username })
     if (!userData) throw new Error("User doesn't exist")
-    if (!bcrypt.compareSync(password, userData.encryptedPassword)) throw new Error("Wrong password")
+    if (!bcrypt.compareSync(password, userData.hashedPassword)) throw new Error("Wrong password")
 
     const token = context.createToken({ username: userData.username })
     return { token }

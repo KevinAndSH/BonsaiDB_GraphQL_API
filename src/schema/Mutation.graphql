@@ -1,37 +1,63 @@
 type Mutation {
+  "Login (required to access author data and to register/edit books' data)"
   login(
+    "User identifier"
     username: String!
+    "Password required for login"
     password: String!
   ): AuthPayload!
 
+  "Register a new user with a unique username"
   signup(
+    "User identifier"
     username: String!
+    "Password required for login"
     password: String!
+    "Both passwords must be equal for the registration to be successful"
     passwordConfirm: String!
   ): AuthPayload!
 
+  "Register a new book in the database"
   registerBook(
+    "Name of the book"
     title: String!
+    "International Standard Book Number"
     isbn: String!
+    "Brief summary of the major points of the book"
     synopsis: String
+    "A list of genres for this book"
     genres: [String!]!
+    "Year this book was published at"
     publicationYear: Int
+    "ID(s) of the author(s) of this book"
     authorIDs: [ID!]!
+    "Publisher ID"
     publisherID: ID!
   ): Book!
 
+  "Update a book with a given ID (empty fields won't do any changes)"
   updateBook(
+    "Unique identifier in the database"
     id: ID!
+    "Name of the book"
     title: String
+    "International Standard Book Number"
     isbn: String
+    "Brief summary of the major points of the book"
     synopsis: String
+    "A list of genres for this book"
     genres: [String]
+    "Year this book was published at"
     publicationYear: Int
+    "ID(s) of the author(s) of this book"
     authorIDs: [ID]
+    "Publisher ID"
     publisherID: ID
   ): Book!
 }
 
+"Response with an Authentication token"
 type AuthPayload {
+  "JSON Web Token for authentication"
   token: String!
 }

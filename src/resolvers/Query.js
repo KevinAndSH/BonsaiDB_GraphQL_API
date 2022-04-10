@@ -21,7 +21,7 @@ const QueryResolvers = {
   },
 
   publisher: async (_, args) => PublisherModel.findById(args.id),
-  publishers: async (_, args, { getUserDataFromReq }) => {
+  publishers: async (_, args) => {
     const { page, amount } = args
 
     const entriesToShow = amount ?? 10

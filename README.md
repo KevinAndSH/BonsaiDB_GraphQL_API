@@ -1,10 +1,10 @@
-# BonsaiDB - GraphQL API
+# Bonsai Library - GraphQL API
 
-GraphQL server made with Apollo Server, connected to a remote MongoDB database.
+GraphQL server made with [Apollo Server](https://www.apollographql.com/docs/apollo-server/), connected to a remote MongoDB database.
 
-Allows for retrieving data for books, authors and publishing houses, as well as user registration and login, and authentication with JSON Web Token, required to query authors' data, as well as for registering and updating books.
+Allows for retrieving data for books, authors and publishing houses, as well as user registration and login, using [`bcryptjs`](https://github.com/dcodeIO/bcrypt.js) for encryption, and authentication with [JSON Web Token](https://github.com/auth0/node-jsonwebtoken), required to query authors' data, as well as for registering and updating books.
 
-GraphQL schemas were made using the Schema Definition Language (SDL), and joined with their respective resolvers using the built-in GraphQL tools provided by Apollo Server.
+GraphQL schemas were made using the Schema Definition Language (SDL), and joined with their respective resolvers using the built-in GraphQL tools provided by Apollo Server, using [`dataloaders`](https://github.com/graphql/dataloader) to batch and cache queries in order to avoid the N + 1 queries issue.
 
 Queries to the database are managed with [Mongoose](https://mongoosejs.com).
 
