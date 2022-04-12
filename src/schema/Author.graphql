@@ -8,7 +8,7 @@ type Author {
   lastName: String
   "Author's full name"
   fullName: String!
-  "author's country"
+  "Author's country"
   country: String
   "Books written by this author in our database"
   books: [Book!]!
