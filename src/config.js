@@ -11,6 +11,7 @@ const schema = require("./schema")
 const typeDefs = gql(schema)
 const resolvers = require("./resolvers")
 const plugins = [ApolloServerPluginLandingPageGraphQLPlayground()]
+const introspection = true
 const context = async ({ req }) => {
   const getUserDataFromReq = () => {
     const authHeader = req.headers?.authorization
@@ -29,5 +30,5 @@ const context = async ({ req }) => {
   return { createToken, getUserDataFromReq, validateISBN, loaders }
 }
 
-module.exports = { typeDefs, resolvers, context, plugins }
+module.exports = { typeDefs, resolvers, context, plugins, introspection }
 
